@@ -37,7 +37,7 @@ public class Voo {
 	@DateTimeFormat(iso = ISO.DATE, pattern = "dd/MM/yyyy")
 	private LocalDate data_partida;
 	
-	@Column(columnDefinition = "DECIMAL(10, 2) DEFAULT 0.00")
+	@Column(nullable = false, columnDefinition = "DECIMAL(10, 2) DEFAULT 0.00")
     private BigDecimal preco_unit;
 	
 	@ManyToOne
