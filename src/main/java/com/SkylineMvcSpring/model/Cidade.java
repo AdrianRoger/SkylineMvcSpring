@@ -1,5 +1,6 @@
 package com.SkylineMvcSpring.model;
 
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -7,6 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -29,6 +31,13 @@ public class Cidade {
 	@Column(nullable = false)
 	private String aeroporto;
 	
+	@OneToMany(mappedBy = "cidade")
+	private List<Voo> Voos;
+	
+	public List<Voo> getvoo(){
+		return this.Voos;
+	}
+	
 	public Cidade() {
 		
 	}
@@ -41,6 +50,7 @@ public class Cidade {
 		this.pais = pais;
 		this.aeroporto = aeroporto;
 	}
+	
 
 	public Long getId() {
 		return id;
