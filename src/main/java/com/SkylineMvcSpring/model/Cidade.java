@@ -34,7 +34,7 @@ public class Cidade {
 	@OneToMany(mappedBy = "cidade")
 	private List<Voo> Voos;
 	
-	public List<Voo> getvoo(){
+	public List<Voo> getVoo(){
 		return this.Voos;
 	}
 	
