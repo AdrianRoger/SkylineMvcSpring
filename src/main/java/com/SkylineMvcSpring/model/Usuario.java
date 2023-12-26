@@ -1,10 +1,12 @@
 package com.SkylineMvcSpring.model;
 
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -38,6 +40,13 @@ public class Usuario {
 	
 	@Column(columnDefinition = "boolean default true")
 	private boolean ativo;
+	
+	@OneToMany(mappedBy = "usuario")
+	public List<Reserva> reservas;
+	
+	public List<Reserva> getReservas(){
+		return this.reservas;
+	}
 	
 	public Usuario() {
 		
