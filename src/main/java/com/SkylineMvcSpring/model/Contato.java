@@ -29,7 +29,7 @@ public class Contato {
 	@Column(nullable = false)
 	private String mensagem;
 	
-	@Column(columnDefinition = "bollean default false")
+	@Column(columnDefinition = "boolean default false")
 	private String resolvido;
 	
 	public Contato() {
