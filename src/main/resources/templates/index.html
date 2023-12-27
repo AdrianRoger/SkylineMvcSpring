@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <title>Skyline Home</title>
+</head>
+
+<body>
+  <div class="gotop toinvisivel bi bi-arrow-up btn-fundo" onclick="scrollToTop()"></div>
+
+  <header>
+    <!-- Começo do menu de navegação -->
+    <nav class="navbar navbar-expand-md bg-fundo navbar-dark pe-2">
+      <div class="container-fluid d-flex justify-content-between">
+        <a href="index.html" class="navbar-brand d-flex align-items-center logo">
+          <img class="logotipo-2" src="./assets/img/logo_white.png" alt="Logotipo">
+          Skyline
+        </a>
+        <button class="navbar-toggler mx-sm-3" type="button" data-bs-toggle="collapse" data-bs-target="#hamburguer">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="container-fluid">
+          <div class="collapse navbar-collapse" id="hamburguer">
+            <div class="navbar-nav ms-auto">
+              <a href="/" class="nav-link active">Home</a>
+              <a href="/destino" class="nav-link">Destino</a>
+              <a href="/promocoes" class="nav-link">Promoções</a>
+              <a href="/contato" class="nav-link">Contato</a>
+              <hr class="group-divider">
+              				<div class="dropdown ms-2">
+								<button class="btn btn-outline-light btn-fundo dropdown-toggle"
+									type="button" data-bs-toggle="dropdown" aria-expanded="false">
+									Admin Pages</button>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item" href="/clientes">Clientes</a></li>
+									<li><a class="dropdown-item" href="/contato">Contato</a></li>
+									<li><a class="dropdown-item" href="/cidades">Cidades</a></li>
+									<li><a class="dropdown-item" href="/voo">Vôo</a></li>
+									<li><a class="dropdown-item" href="/reservas">Reservas</a></li>
+								</ul>
+							</div>
+            </div> <!-- div-navbar -->
+          </div>
+        </div>
+      </div>
+
+    </nav><!-- O menu de navegação acaba aqui -->
+  </header>
+
+  <main class="lead">
+    <!-- Inicio keyframe apresentação -->
+    <section id="fundos" class="d-flex justify-content-center align-items-center text-center">
+      <div class="fundo-azul-opaco revelar">
+        <h1 class="titulo-2">Viaje com qualidade.</h1>
+        <p>Nós temos as melhores opções e ofertas.</p>
+      </div>
+    </section>
+    <!-- Fim keyframe apresentação -->
+
+    <!-- inicio cards -->
+    <article>
+      <div class="container py-5">
+        <div class="d-flex justify-content-center">
+          <h2 class="titulo-3">Categorias</h2>
+        </div>
+        <p class="lead text-center marc">Conheça as principais categorias utilizadas para classificar sua viagem.</p>
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          <!-- card 1 -->
+          <div class="col"><!--essa div elimina um padding lateral indesejado no card-->
+            <div class="card card-alt shadow-sm h-100 gp-revelar">
+              <div class="image-container">
+                <img src="./assets/img/Firefly_arquipelago.jpg" alt="Imagem do arquipélago " class="card-img-top card-img-top-alt image-fadein">
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Ilhas e Praias</h5>
+                <p>Qual tal escolher viajar para uma, entre muitas opções de ilhas e praias? Estamos aqui para ajudá-lo a escolher o melhor destino.</p>
+              </div>
+              <div class="card-footer">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-md btn-outline-light btn-fundo">Info</button>
+                    <button type="button" class="btn btn-md btn-outline-light btn-fundo">Explorar</button>
+                  </div>
+                  <i class="bi bi-heart"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- card 2 -->
+          <div class="col">
+            <div class="card card-alt shadow-sm h-100 gp-revelar">
+              <div class="image-container">
+                <img src="./assets/img/Firefly_piramides.jpg" class="card-img-top card-img-top-alt image-fadein" alt="imagem Bahia Salvador">
+              </div>
+
+              <div class="card-body">
+                <h5>Lugares Históricos</h5>
+                <p class="card-text">Descubra mistérios da história, arquitetura e lendas. Uma jornada fascinante ao passado.</p>
+                </div>
+                <div class="card-footer">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-md btn-outline-light btn-fundo">Info</button>
+                      <button type="button" class="btn btn-md btn-outline-light btn-fundo">Explorar</button>
+                    </div>
+                    <i class="bi bi-heart"></i>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <!-- card 3 -->
+          <div class="col">
+            <div class="card card-alt shadow-sm h-100 gp-revelar">
+              <div class="image-container">
+                <img src="./assets/img/Firefly_veneza.jpg" class="card-img-top card-img-top-alt image-fadein" alt="imagem Bahia Salvador">
+              </div>
+              <div class="card-body">
+                <h5>Cidades Marcantes</h5>
+                <p class="card-text">Uma seleção de cidades com características e culturas impressionantes.</p>
+              </div>
+              <div class="card-footer">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-md btn-outline-light btn-fundo">Info</button>
+                    <button type="button" class="btn btn-md btn-outline-light btn-fundo">Explorar</button>
+                  </div>
+                  <i class="bi bi-heart"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- card 4 -->
+          <div class="col">
+            <div class="card card-alt shadow-sm h-100 gp-revelar">
+              <div class="image-container">
+                <img src="./assets/img/Firefly_resort.jpg" class="card-img-top card-img-top-alt image-fadein" alt="imagem Bahia Salvador">
+              </div>
+              <div class="card-body">
+                <h5>Resorts</h5>
+                <p class="card-text">Paraísos dos sonhos, explore as opções para encontrar muito luxo e experiências inesquecíveis em nossa seleção.</p>
+                </div>
+                <div class="card-footer">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-md btn-outline-light btn-fundo">Info</button>
+                      <button type="button" class="btn btn-md btn-outline-light btn-fundo">Explorar</button>
+                    </div>
+                    <i class="bi bi-heart"></i>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <!-- card 5 -->
+          <div class="col">
+            <div class="card card-alt shadow-sm h-100 gp-revelar">
+              <div class="image-container">
+                <img src="./assets/img/Firefly_hotel_fazenda.jpg" class="card-img-top card-img-top-alt image-fadein" alt="imagem Bahia Salvador">
+              </div>
+              <div class="card-body">
+                <h5>Hoteis Fazenda</h5>
+                <p class="card-text">Relaxe e divirta-se em luxuosos Hoteis Fazenda. Conosco você encontrará as melhores opções combinadas com os menores preços.</p>
+                </div>
+                <div class="card-footer">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-md btn-outline-light btn-fundo">Info</button>
+                      <button type="button" class="btn btn-md btn-outline-light btn-fundo">Explorar</button>
+                    </div>
+                    <i class="bi bi-heart"></i>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <!-- card 6 -->
+          <div class="col">
+            <div class="card card-alt shadow-sm h-100 gp-revelar">
+              <div class="image-container">
+                <img src="./assets/img/Firefly_gruta.jpg" class="card-img-top card-img-top-alt image-fadein" alt="imagem Bahia Salvador">
+              </div>
+              <div class="card-body">
+                <h5>Cachoeiras e Grutas</h5>
+                <p class="card-text">Com pacotes que incluem pousadas nas proximidades e guias preparados para a visitação. Consulte as opções para cada temporada.</p>
+                </div>
+                <div class="card-footer">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-md btn-outline-light btn-fundo">Info</button>
+                      <button type="button" class="btn btn-md btn-outline-light btn-fundo">Explorar</button>
+                    </div>
+                    <i class="bi bi-heart"></i>
+                  </div>
+                </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </article>
+    <!-- Fim cards -->
+
+    <!-- Inicio Parallax -->
+    <section>
+      <div class="parallax d-flex justify-content-center align-items-center text-center my-4">
+
+        <div class="fundo-azul-opaco revelar">
+          <img src="./assets/img/logo_white.png" alt="logotigo" class="logotipo-2">
+          <h4 class="logo mt-2">Skyline</h4>
+          <p class="text-img-parallax">
+            Nós da Skyline estamos empenhados em oferecer um serviço de qualidade, conectando você aos seus lugares favoritos. Temos uma equipe de consultores prontos para ajudá-lo a encontrar o melhor plano e o menor preço. Caso tenha alguma dúvida sobre nossa plataforma ou serviços deixe-nos uma mensagem no canal de <strong>Contato</strong> que retornaremos.
+          </p>
+        </div>
+
+      </div>
+    </section>
+    <!-- Fim Parallax -->
+
+    <!-- Início seçao de qualidade -->
+    <section>
+      <div class="container py-5">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          <div class="col d-flex ">
+            <div>
+              <div class="card flex-fill shadow-sm h-100 gp-revelar">
+                <div class="card-header d-flex justify-content-center">
+                  <img src="" alt="" class="bi bi-star fs-2 text-primary">
+                </div>
+                <div class="card-body">
+                  <h5 class="card-subtitle">
+                    Qualidade Total
+                  </h5>
+                  <hr class="group-divider">
+                  <p>Nossas viagens são cuidadosamente selecionadas para oferecer experiências inesquecíveis, combinando conforto, segurança e encanto em cada destino.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col d-flex">
+            <div>
+              <div class="card flex-fill shadow-sm h-100 gp-revelar">
+                <div class="card-header d-flex justify-content-center">
+                  <img src="" alt="" class="bi bi-cash-coin fs-2 text-primary">
+                </div>
+                <div class="card-body">
+                  <h5 class="card-subtitle">
+                    Preços Competitivos
+                  </h5>
+                  <hr class="group-divider">
+                  <p>Viaje mais, gastando menos! Oferecemos tarifas acessíveis sem comprometer a qualidade, garantindo que você obtenha o melhor valor em suas aventuras.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col d-flex">
+            <div>
+              <div class="card flex-fill shadow-sm h-100 gp-revelar">
+                <div class="card-header d-flex justify-content-center">
+                  <img src="" alt="" class="bi bi-headset fs-2 text-primary">
+                </div>
+                <div class="card-body">
+                  <h5 class="card-subtitle">
+                    Atendimento 24/7
+                  </h5>
+                  <hr class="group-divider">
+                  <p>Estamos disponíveis a qualquer hora, em qualquer lugar. Conte conosco para auxiliar em emergências e proporcionar assistência ininterrupta.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col d-flex">
+            <div>
+              <div class="card flex-fill shadow-sm h-100 gp-revelar">
+                <div class="card-header d-flex justify-content-center">
+                  <img src="" alt="" class="bi bi-tree fs-2 text-primary">
+                </div>
+                <div class="card-body">
+                  <h5 class="card-subtitle">
+                    Eco-consciência
+                  </h5>
+                  <hr class="group-divider">
+                  <p>Comprometemo-nos a preservar o meio ambiente. Oferecemos opções ecoconscientes para viajar com responsabilidade social e ambiental.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col d-flex">
+            <div>
+              <div class="card flex-fill shadow-sm h-100 gp-revelar">
+                <div class="card-header d-flex justify-content-center">
+                  <img src="" alt="" class="bi bi-credit-card-2-front fs-2 text-primary">
+                </div>
+                <div class="card-body">
+                  <h5 class="card-subtitle">
+                    Pagamento Flexível
+                  </h5>
+                  <hr class="group-divider">
+                  <p>Facilitamos sua jornada ao oferecer opções flexíveis de pagamento, tornando os sonhos de viajar uma realidade acessível e conveniente.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col d-flex">
+            <div>
+              <div class="card flex-fill shadow-sm h-100 gp-revelar">
+                <div class="card-header d-flex justify-content-center">
+                  <img src="" alt="" class="bi bi-pin-map fs-2 text-primary">
+                </div>
+                <div class="card-body">
+                  <h5 class="card-subtitle">
+                    Destinos Exclusivos
+                  </h5>
+                  <hr class="group-divider">
+                  <p>Descubra lugares escondidos e destinos icônicos com nosso catálogo diversificado de viagens, garantindo que você explore o mundo de forma única e autêntica.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Fim Seção de qualidade -->
+
+    <!-- Início seção de equipe -->
+    <section>
+      <div class="container">
+        <div class="container d-flex justify-content-center pt-5">
+          <h1 class="titulo-1">Nossa equipe</h1>
+        </div>
+        <div class="container-fluid py-2" id="team-members">
+
+          <div class="row row-cols-1 row-cols-md-3 g-3">
+            <!-- team member 01 -->
+            <div class="col gp-revelar">
+              <div class="team-container mx-auto">
+                <img src="./assets/img/team/People02_crop.jpg" class="team-img" alt="">
+              </div>
+              <div class="team-desc bg-fundo text-center">
+                <h3 class="team-name titulo-3">Larissa Santos</h3>
+                <hr class="group-divider">
+                <h4 class="team-title">CEO e Fundora</h4>
+                <p class="team-text"> Movida por uma paixão inabalável por viagens, Larissa fundou nossa agência para inspirar pessoas a explorar o mundo. Sua visão e liderança impulsionam nossa equipe a criar experiências de viagem excepcionais.</p>
+              </div>
+            </div>
+            <!-- team member 02 -->
+            <div class="col gp-revelar">
+              <div class="team-container mx-auto">
+                <img src="./assets/img/team/People01_crop.jpg" class="team-img" alt="">
+              </div>
+              <div class="team-desc bg-fundo text-center">
+                <h3 class="team-name titulo-3">Regina Ortega</h3>
+                <hr class="group-divider">
+                <h4 class="team-title">Gerente de Experiências</h4>
+                <p class="team-text">Com um olhar atento aos detalhes, Regina se dedica a aprimorar cada jornada dos nossos clientes. Sua expertise em destinos únicos e serviços personalizados torna cada viagem memorável.</p>
+              </div>
+            </div>
+            <!-- team member 03 -->
+            <div class="col gp-revelar">
+              <div class="team-container mx-auto">
+                <img src="./assets/img/team/People04_crop.jpg" class="team-img" alt="">
+              </div>
+              <div class="team-desc bg-fundo text-center">
+                <h3 class="team-name titulo-3">Arthur Samuel</h3>
+                <hr class="group-divider">
+                <h4 class="team-title">Consultor de Aventuras</h4>
+                <p class="team-text">Amante da diversidade cultural, Arthur é apaixonado por conectar pessoas com destinos autênticos. Sua abordagem consultiva e vasto conhecimento tornam cada itinerário uma descoberta enriquecedora.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Fim seção de equipe -->
+  </main>
+
+  <footer>
+    <div class="container-fluid bg-fundo rodape mt-5">
+      <div class="container">
+        <div class="row row-cols-1 row-cols-md-3 g-3">
+          <!-- Grupo Fale Conosco -->
+          <div class="col">
+            <div class="gp-col-foot">
+              <h3 class="foot-title gp-revelar">Fale Conosco</h3>
+              <hr class="group-divider">
+              <div class="gp-footer gp-revelar">
+                <i class="bi bi-telephone-fill fs-4"></i>
+                <p class="marc">+55 (61) 9 9999-999</p>
+              </div>
+              <div class="gp-footer gp-revelar">
+                <i class="bi bi-envelope-fill fs-4"></i>
+                <p class="marc">skyline@skyline.com</p>
+              </div>
+              <div class="gp-footer gp-revelar">
+                <i class="bi bi-geo-alt-fill fs-4"></i>
+                <p class="marc">72.145-831 Brasília-DF</p>
+              </div>
+            </div>
+          </div>
+          <!-- Grupo Redes Sociais -->
+          <div class="col">
+            <div class="gp-col-foot">
+              <h3 class="foot-title gp-revelar">Redes Sociais</h3>
+              <hr class="group-divider">
+              <div class="gp-footer gp-revelar">
+                <i class="bi bi-instagram fs-4"></i>
+                <p class="marc">instagram.com/skyline</p>
+              </div>
+              <div class="gp-footer gp-revelar">
+                <i class="bi bi-facebook fs-4"></i>
+                <p class="marc">facebook.com/skyline</p>
+              </div>
+              <div class="gp-footer gp-revelar">
+                <i class="bi bi-youtube fs-4"></i>
+                <p class="marc">youtube.com/skyline</p>
+              </div>
+            </div>
+          </div>
+          <!-- Grupo Seções nessa página -->
+          <div class="col">
+            <div class="gp-col-foot">
+              <h3 class="foot-title gp-revelar">Powered By</h3>
+              <hr class="group-divider">
+              <div class="gp-footer gp-revelar">
+                <i class="bi bi-filetype-html fs-4"></i>
+                <p class="marc">HTML/CSS</p>
+              </div>
+              <div class="gp-footer gp-revelar">
+                <i class="bi bi-bootstrap-fill fs-4"></i>
+                <p class="marc">BootStrap 5.3.1</p>
+              </div>
+              <div class="gp-footer gp-revelar">
+                <i class="bi bi-filetype-js fs-4"></i>
+                <p class="marc">ScrollReveal</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="marca-pessoal">
+        <!-- <p>Página Desenvolvida por <strong>Adrian Roger</strong>.  -->
+          <a class="git-link fs-3" href="https://github.com/AdrianRoger" target="_blank"><i class="bi bi-github me-2"></i>github.com/AdrianRoger</a></p>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script src="./assets/js/script.js"></script>
+</body>
+
+</html>
