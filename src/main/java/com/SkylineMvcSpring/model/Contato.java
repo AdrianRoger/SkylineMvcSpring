@@ -30,13 +30,13 @@ public class Contato {
 	private String mensagem;
 	
 	@Column(columnDefinition = "boolean default false")
-	private String resolvido;
+	private Boolean resolvido;
 	
 	public Contato() {
 		
 	}
 
-	public Contato(Long id, String nome, String email, String telefone, String mensagem, String resolvido) {
+	public Contato(Long id, String nome, String email, String telefone, String mensagem, Boolean resolvido) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -86,11 +86,11 @@ public class Contato {
 		this.mensagem = mensagem;
 	}
 
-	public String getResolvido() {
+	public Boolean isResolvido() {
 		return resolvido;
 	}
 
-	public void setResolvido(String resolvido) {
+	public void setResolvido(Boolean resolvido) {
 		this.resolvido = resolvido;
 	}
 
