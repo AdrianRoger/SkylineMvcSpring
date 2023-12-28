@@ -13,7 +13,7 @@ import com.SkylineMvcSpring.model.Contato;
 import com.SkylineMvcSpring.repository.ContatoRepository;
 
 @Controller
-@RequestMapping("/admin/contato/contato")
+@RequestMapping("/admin/contato")
 public class ContatoController {
 	
 	@Autowired
@@ -21,7 +21,7 @@ public class ContatoController {
 	
 	@GetMapping
 	public ModelAndView listar() {
-		ModelAndView modelAndView = new ModelAndView("admin/contato/contato");
+		ModelAndView modelAndView = new ModelAndView("admin/contato");
 		
 		List<Contato> contatos = contatoRepository.findAll();
 		modelAndView.addObject("contatos", contatos);
@@ -36,7 +36,7 @@ public class ContatoController {
 		c.setResolvido(true);
 		contatoRepository.save(c);
 		
-		ModelAndView modelAndView = new ModelAndView("redirect:/admin/contato/contato");
+		ModelAndView modelAndView = new ModelAndView("redirect:/admin/contato");
 		
 		List<Contato> contatos = contatoRepository.findAll();
 		modelAndView.addObject("contatos", contatos);
@@ -48,7 +48,7 @@ public class ContatoController {
 	public ModelAndView delete(@PathVariable Long id) {
 		contatoRepository.deleteById(id);
 		
-		ModelAndView modelAndView = new ModelAndView("redirect:/admin/contato/contato");
+		ModelAndView modelAndView = new ModelAndView("redirect:/admin/contato");
 		
 		List<Contato> contatos = contatoRepository.findAll();
 		modelAndView.addObject("contatos", contatos);
