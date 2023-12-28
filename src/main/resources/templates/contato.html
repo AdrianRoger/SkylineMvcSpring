@@ -69,13 +69,13 @@
 					<div class="col">
 						<h1 class="text-center titulo-3">Fale Conosco</h1>
 						<hr class="group-divider">
-						<form action="/SkylineMvcServlet/contato-create" id="id_form">
+						<form method="post" th:object="${contato}">
 							<div class="form-group">
-								<input type="text" class="form-control mb-3" id="idnome" name="nome" placeholder="Nome Completo" maxlength="80" required>
-								<input type="email" class="form-control mb-3" id="idemail" name="email"
+								<input type="text" class="form-control mb-3" id="idnome" th:field="*{nome}" placeholder="Nome Completo" maxlength="80" required>
+								<input type="email" class="form-control mb-3" id="idemail" th:field="*{email}"
 									placeholder="email@provedor.com" maxlength="80" required>
-								<input type="tel" class="form-control mb-3" id="idtelefone" name="telefone" placeholder="Telefone" required>
-								<textarea class="form-control mb-3" id="idarea" name="msg" maxlength="500"
+								<input type="tel" class="form-control mb-3" id="idtelefone" th:field="*{telefone}" placeholder="Telefone" required>
+								<textarea class="form-control mb-3" id="idarea" th:field="*{mensagem}" maxlength="500"
 									placeholder="Deixe-nos uma mensagem." required></textarea>
 								<div class="btn-group">
 									<button class="btn btn-md btn-outline-light btn-fundo" type="reset">Limpar Formulário</button>
