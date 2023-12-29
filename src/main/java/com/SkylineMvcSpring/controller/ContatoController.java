@@ -19,6 +19,8 @@ public class ContatoController {
 	@Autowired
 	private ContatoRepository contatoRepository;
 	
+	//O método de criar desta classe encontra-se na classe menuController
+	
 	@GetMapping
 	public ModelAndView listar() {
 		ModelAndView modelAndView = new ModelAndView("admin/contato");
