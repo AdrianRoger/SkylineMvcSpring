@@ -23,6 +23,7 @@ public class CidadeController {
 	@Autowired
 	private CidadeRepository cidadeRepository;
 	
+	//listar
 	@GetMapping
 	public ModelAndView list() throws IOException{
 		ModelAndView modelAndView = new ModelAndView("/admin/cidade");
@@ -36,6 +37,7 @@ public class CidadeController {
 		return modelAndView;
 	}
 	
+	//criar
 	@PostMapping
 	public ModelAndView create(@ModelAttribute("form") Cidade cidade) throws IOException {
 		ModelAndView modelAndView = new ModelAndView("redirect:/admin/cidade");
@@ -44,6 +46,7 @@ public class CidadeController {
 		return modelAndView;
 	}
 	
+	//atualizar
 	@GetMapping("/{id}/update")
 	public ModelAndView update(@PathVariable Long id, @RequestParam("cidade") String cidade,
 			@RequestParam("estado") String estado, @RequestParam("pais") String pais, @RequestParam("aero") String aero)
@@ -60,6 +63,7 @@ public class CidadeController {
 		return modelAndView;
 	}
 	
+	//deletar
 	@GetMapping("/{id}/delete")
 	public ModelAndView delete(@PathVariable Long id) {
 		ModelAndView modelAndView = new ModelAndView("redirect:/admin/cidade");
