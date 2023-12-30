@@ -49,7 +49,7 @@ public class VooController {
 	@PostMapping
 	public ModelAndView create(@ModelAttribute("form") Voo voo, @RequestParam long origem, @RequestParam Long destino) throws IOException {
 		ModelAndView modelAndView = new ModelAndView("redirect:/admin/voo");
-
+		
 		voo.setOrigem(cidadeRepository.findById(origem).get());
 		voo.setDestino(cidadeRepository.findById(destino).get());
 		vooRepository.save(voo);
@@ -61,7 +61,7 @@ public class VooController {
 	@PutMapping
 	public ModelAndView update(@ModelAttribute Voo voo) throws IOException {
 		ModelAndView modelAndView = new ModelAndView("redirect:/admin/voo");
-		
+
 		vooRepository.save(voo);
 		
 		return modelAndView;
