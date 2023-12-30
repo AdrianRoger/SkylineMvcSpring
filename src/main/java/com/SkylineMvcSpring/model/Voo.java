@@ -43,12 +43,12 @@ public class Voo {
     private BigDecimal preco_unit;
 	
 	@ManyToOne
-	@JoinColumn(name="cidade_origem_id", nullable = false)
-	private Cidade cidade_origem;
+	@JoinColumn(name="origem_id", nullable = false)
+	private Cidade origem;
 	
 	@ManyToOne
-	@JoinColumn(name="cidade_destino_id", nullable = false)
-	private Cidade cidade_destino;
+	@JoinColumn(name="destino_id", nullable = false)
+	private Cidade destino;
 	
 	@OneToMany(mappedBy = "voo")
 	public List<Reserva> reservas;
@@ -70,8 +70,8 @@ public class Voo {
 		this.assentos = assentos;
 		this.data_partida = data_partida;
 		this.preco_unit = preco_unit;
-		this.cidade_origem = origem;
-		this.cidade_destino = destino;
+		this.origem = origem;
+		this.destino = destino;
 	}
 
 	public Long getId() {
@@ -122,25 +122,25 @@ public class Voo {
 		this.preco_unit = preco_unit;
 	}
 
-	public Cidade getCidadeOrigem() {
-		return cidade_origem;
+	public Cidade getOrigem() {
+		return origem;
 	}
 
-	public void setCidadeOrigem(Cidade cidade) {
-		this.cidade_origem = cidade;
+	public void setOrigem(Cidade cidade) {
+		this.origem = cidade;
 	}
 	
-	public Cidade getCidadeDestino() {
-		return cidade_destino;
+	public Cidade getDestino() {
+		return destino;
 	}
 
-	public void setCidadeDestino(Cidade cidade) {
-		this.cidade_destino = cidade;
+	public void setDestino(Cidade cidade) {
+		this.destino = cidade;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(assentos, comp_aerea, data_partida, id, num_voo, preco_unit, cidade_origem, cidade_destino);
+		return Objects.hash(assentos, comp_aerea, data_partida, id, num_voo, preco_unit, origem, destino);
 	}
 
 	@Override
@@ -155,15 +155,15 @@ public class Voo {
 		return assentos == other.assentos && Objects.equals(comp_aerea, other.comp_aerea)
 				&& Objects.equals(data_partida, other.data_partida) && Objects.equals(id, other.id)
 				&& num_voo == other.num_voo && Objects.equals(preco_unit, other.preco_unit)
-				&& Objects.equals(cidade_origem, other.cidade_origem)
-				&& Objects.equals(cidade_destino, other.cidade_destino);
+				&& Objects.equals(origem, other.origem)
+				&& Objects.equals(destino, other.destino);
 	}
 
 	@Override
 	public String toString() {
 		return "Voo [id=" + id + ", num_voo=" + num_voo + ", comp_aerea=" + comp_aerea + ", assentos=" + assentos
-				+ ", data_partida=" + data_partida + ", preco_unit=" + preco_unit + ", cidade_origem=" + cidade_origem
-				+ ", cidade_destino=" + cidade_destino + ", reservas=" + reservas + "]";
+				+ ", data_partida=" + data_partida + ", preco_unit=" + preco_unit + ", origem=" + origem
+				+ ", destino=" + destino + ", reservas=" + reservas + "]";
 	}
 
 	

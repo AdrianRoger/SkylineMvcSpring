@@ -71,3 +71,26 @@ function definirMesmaAltura() {
 // Chame a função quando a página carregar e também se a janela for redimensionada
 window.addEventListener('load', definirMesmaAltura);
 window.addEventListener('resize', definirMesmaAltura);
+
+// Função request delete
+function deleteItem(url, id, ref) {
+	let userConfirm = confirm("Deseja realmente excluir " + ref + "?");
+	let xhr = new XMLHttpRequest();
+	
+	if(userConfirm){
+    xhr.open('DELETE', url + '/' + id, true);
+    	
+			xhr.onload = function () {
+	      window.location.href = xhr.responseURL;
+	    };
+	    
+	}else{
+		xhr.open('GET', url, true);
+		
+			xhr.onload = function () {
+	      window.location.href = url;
+	    };
+	}
+	xhr.send();
+}
+

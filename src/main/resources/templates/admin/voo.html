@@ -74,6 +74,11 @@
 				<div class="row">
 					<div class="col">
 						<h1 class="text-center titulo-3">Vôo</h1>
+						
+							<div th:if="${param.error}" class="error-message">
+    						<p th:text="${param.error}"></p>
+							</div>
+							
 						<hr class="group-divider">
 						<div class="table-responsive">
 							<table class="table table-striped">
@@ -88,141 +93,100 @@
 									<th>Destino</th>
 									<th>Ações</th>
 								</tr>
-								<jstl:forEach items="${voos}" var="v">
-									<input type="hidden" id="id" name="id" value="${v.id_voo}">
-									<tr>
-										<td>${v.num_voo}</td>
-										<td>${v.comp_aerea}</td>
-										<td>${v.assentos}</td>
-										<td>R$ ${v.preco_unit}</td>
-										<td>${v.data_partida}</td>
-										<td>${v.origem.getCidade()}-${v.origem.getEstado()}</td>
-										<td>${v.destino.getCidade()}-${v.destino.getEstado()}</td>
+									<tr th:each="v : ${voos}">
+										<td th:text="${v.num_voo}"></td>
+										<td th:text="${v.comp_aerea}"></td>
+										<td th:text="${v.assentos}"></td>
+										<td th:text="'R$ ' + ${v.preco_unit}"></td>
+										<td th:text="${v.data_partida}"></td>
+										<td th:text="${v.origem.cidade} + '-' + ${v.origem.estado}"></td>
+										<td th:text="${v.destino.cidade} + '-' + ${v.destino.estado}"></td>
 										<td>
 											<div class="btn-group">
 												<a href="#" class="btn btn-sm btn-outline-secondary"
-													data-bs-toggle="modal" data-bs-target="#update${v.id_voo}"><i class="bi bi-pencil-square"></i></a>
-												<a href="#" class="btn btn-sm btn-outline-danger"
-													data-bs-toggle="modal" data-bs-target="#detalhe${v.id_voo}"><i class="bi bi-trash3-fill"></i></a>
+													data-bs-toggle="modal" th:data-bs-target="'#update' + ${v.id}"><i class="bi bi-pencil-square"></i></a>
+												<a href="#" class="btn btn-sm btn-outline-danger" 
+													th:onclick="'deleteItem(\'/admin/voo\',' + ${v.id} + ',' + ${v.num_voo} +');'"><i class="bi bi-trash3-fill"></i></a>
 											</div>
 										</td>
-									</tr>
-									<div class="modal" id="detalhe${v.id_voo}" tabindex="-1">
-										<div class="modal-dialog">
-											<div class="modal-content">
-												<div class="modal-header">
-													<h5 class="modal-title">Detalhes Vôo</h5>
-													<button type="button" class="btn-close"
-														data-bs-dismiss="modal" aria-label="Close"></button>
-												</div>
-												<div class="modal-body">
-													<p>
-														<strong>Número do vôo:</strong> ${v.num_voo}
-													</p>
-													<p>
-														<strong>Compania Aérea:</strong> ${v.comp_aerea}
-													</p>
-													<p>
-														<strong>Assentos:</strong> ${v.assentos}
-													</p>
-													<p>
-														<strong>Preço Unitário:</strong> R$ ${v.preco_unit}
-													</p>
-													<p>
-														<strong>Data Partida:</strong> ${v.data_partida}
-													</p>
-													<p>
-														<strong>Origem:</strong> ${v.origem.cidade} -
-														${v.origem.estado}
-													</p>
-													<p>
-														<strong>Destino:</strong> ${v.destino.cidade} -
-														${v.destino.estado}
-													</p>
-
-												</div>
-												<div class="modal-footer">
-													<button type="button" class="btn btn-sm btn-secondary"
-														data-bs-dismiss="modal">Cancelar</button>
-													<a href="voo-delete?id=${v.id_voo}"
-														class="btn btn-sm btn-danger">Excluir</a>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="modal" id="update${v.id_voo}" tabindex="-2">
-										<div class="modal-dialog">
-											<div class="modal-content">
-												<div class="modal-header">
-													<h5 class="modal-title">Atualizar Vôo</h5>
-													<button type="button" class="btn-close"
-														data-bs-dismiss="modal" aria-label="Close"></button>
-												</div>
-												<div class="modal-body">
-													<form action="/SkylineMvcServlet/voo-update">
-														<input type="hidden" value="${v.id_voo}" name="id">
-
-														<div class="mb-3">
-															<label for="num_voo" class="col-form-label">Número
-																do Vôo:</label> <input type="text" class="form-control num_voo"
-																id="num_voo" name="num_voo" value="${v.num_voo}" required>
-														</div>
-														<div class="mb-3">
-															<label for="comp_aerea" class="col-form-label">Compania
-																Aérea:</label> <input type="text" class="form-control"
-																id="comp_aerea" name="comp_aerea" value="${v.comp_aerea}" required>
-														</div>
-														<div class="mb-3">
-															<label for="assentos" class="col-form-label">Assentos:</label>
-															<input type="text" class="form-control assentos" id="assentos"
-																name="assentos" value="${v.assentos}" required>
-														</div>
-														<div class="mb-3">
-															<label for="preco_unit" class="col-form-label">Preço
-																Unitário: (Valor atual:R$ ${v.preco_unit}) </label> <input type="text" class="form-control preco_unit"
-																id="preco_unit" placeholder="R$ 0,00" name="preco_unit" required>
-														</div>
-														<div class="mb-3">
-															<label for="data" class="col-form-label">Data
-																Partida:</label> <input type="text" class="form-control data"
-																id="data" name="data" placeholder="DD/MM/AAAA" required>
-														</div>
-
-														<div class="mb-3">
-															<label for="origem" class="col-form-label">Origem:</label>
-															<select class="form-control" id="origem" name="origem"
-																required>
-																<option value="" disabled selected>${v.origem.cidade}</option>
-																<jstl:forEach items="${cidades}" var="ori">
-																	<option value="${ori.id_cidade}">${ori.cidade}-${ori.estado}</option>
-																</jstl:forEach>
-															</select>
-														</div>
-														<div class="mb-3">
-															<label for="destino" class="col-form-label">Destino:</label>
-															<select class="form-control" id="destino" name="destino"
-																required>
-																<option value="" disabled selected>${v.destino.cidade}</option>
-																<jstl:forEach items="${cidades}" var="dest">
-																	<option value="${dest.id_cidade}">${dest.cidade}-${dest.estado}</option>
-																</jstl:forEach>
-															</select>
-														</div>
-
-														<div class="modal-footer">
-															<button type="button" class="btn btn-sm btn-secondary"
-																data-bs-dismiss="modal">Cancelar</button>
-															<button type="submit" class="btn btn-sm btn-primary">Atualizar</button>
-														</div>
-
-													</form>
+										
+										<!-- Modal Atualizar -->
+										<div class="modal" th:id="'update' + ${v.id}" tabindex="-2">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title">Atualizar Vôo</h5>
+														<button type="button" class="btn-close"
+															data-bs-dismiss="modal" aria-label="Close"></button>
+													</div>
+													<div class="modal-body">
+														<form method="POST">
+															<input type="hidden" th:value="${v.id}" readonly>
+															
+															<div class="mb-3">
+																<label for="num_voo" class="col-form-label">Número do Vôo:</label> 
+																<input type="text" class="form-control num_voo"
+																	id="num_voo" name="num_voo" th:value="*{v.num_voo}" required>
+															</div>
+															
+															<div class="mb-3">
+																<label for="comp_aerea" class="col-form-label">Compania Aérea:</label> 
+																<input type="text" class="form-control"
+																	id="comp_aerea" name="comp_aerea" th:value="*{v.comp_aerea}" required>
+															</div>
+															
+															<div class="mb-3">
+																<label for="assentos" class="col-form-label">Assentos:</label>
+																<input type="text" class="form-control assentos" id="assentos"
+																	name="assentos" th:value="*{v.assentos}" required>
+															</div>
+															
+															<div class="mb-3">
+																<label for="preco_unit" class="col-form-label">Preço Unitário: </label>
+																<input type="text" class="form-control preco_unit" id="preco_unit" name="preco_unit" 
+																	th:value="*{v.preco_unit}" placeholder="R$ 0,00" required>
+															</div>
+															
+															<div class="mb-3">
+																<label for="data" class="col-form-label">Data Partida: </label>
+																<input type="text" class="form-control data" id="data" name="data_partida"  
+																	th:value="*{#temporals.format(v.data_partida, 'dd/MM/yyyy')}" placeholder="DD/MM/AAAA" required>
+															</div>
+	
+															<div class="mb-3">
+																<label for="origem" class="col-form-label">Origem:</label>
+																<select class="form-control" id="origem" name="origem" required>
+																	<option value="" th:text="${v.origem.cidade} + '-' + ${v.origem.estado}" disabled selected></option>
+																	<option th:each="ori : ${cidades}" th:value="*{ori.id}" 
+																		th:text="${ori.cidade} + '-' + ${ori.estado}"></option>
+																</select>
+															</div>
+															
+															<div class="mb-3">
+																<label for="destino" class="col-form-label">Destino:</label>
+																<select class="form-control" id="destino" name="destino" required>
+																	<option value="" th:text="${v.destino.cidade} + '-' + ${v.destino.estado}" disabled selected></option>
+																	<option th:each="dest : ${cidades}" th:value="*{dest.id}" 
+																		th:text="${dest.cidade} + '-' + ${dest.estado}"></option>
+																</select>
+															</div>
+	
+															<div class="modal-footer">
+																<button type="button" class="btn btn-sm btn-secondary"
+																	data-bs-dismiss="modal">Cancelar</button>
+																<button type="submit" class="btn btn-sm btn-primary">Atualizar</button>
+															</div>
+	
+														</form>
+													</div>
 												</div>
 											</div>
 										</div>
-									</div>
-								</jstl:forEach>
-
+									</tr>									
+								<!-- Fim do loop thymeleaf -->
 							</table>
+							
+							<!-- Form de Cadastro -->
 							<a href="#" class="btn btn-outline-light btn-fundo"
 								data-bs-toggle="modal" data-bs-target="#createVoo">Cadastrar
 								Voo</a>
@@ -235,31 +199,31 @@
 												data-bs-dismiss="modal" aria-label="Close"></button>
 										</div>
 										<div class="modal-body">
-											<form action="/SkylineMvcServlet/voo-create">
+											<form method="POST" th:object="${voo}">
 												<div class="mb-3">
 													<label for="num_voo1" class="col-form-label">Número
 														do Vôo:</label> <input type="text" class="form-control num_voo"
-														id="num_voo1" name="num_voo" required>
+														id="num_voo1" th:field="*{num_voo}" required>
 												</div>
 												<div class="mb-3">
 													<label for="comp_aerea1" class="col-form-label">Compania
 														Aérea:</label> <input type="text" class="form-control"
-														id="comp_aerea1" name="comp_aerea" required>
+														id="comp_aerea1" th:field="*{comp_aerea}" required>
 												</div>
 												<div class="mb-3">
 													<label for="assentos1" class="col-form-label">Assentos:</label>
 													<input type="text" class="form-control assentos" id="assentos1"
-														name="assentos" required>
+														th:field="*{assentos}" required>
 												</div>
 												<div class="mb-3">
 													<label for="preco_unit1" class="col-form-label">Preço
 														Unitário:</label> <input type="text" class="form-control preco_unit"
-														id="preco_unit1" placeholder="R$ 0,00" name="preco_unit" required>
+														id="preco_unit1" placeholder="R$ 0,00" th:field="*{preco_unit}" required>
 												</div>
 												<div class="mb-3">
 													<label for="data1" class="col-form-label">Data
 														Partida:</label> <input type="text" class="form-control data" id="data1"
-														name="data" placeholder="DD/MM/AAAA" required>
+														th:field="*{data_partida}" placeholder="DD/MM/AAAA" required>
 												</div>
 
 												<div class="mb-3">
@@ -268,20 +232,23 @@
 														required>
 														<option value="" disabled selected>Selecione uma
 															origem</option>
-														<jstl:forEach items="${cidades}" var="ori">
-															<option value="${ori.id_cidade}">${ori.cidade}-${ori.estado}</option>
-														</jstl:forEach>
+															
+														<option th:each="ori : ${cidades}" th:value="${ori.id}"
+															th:text="${ori.cidade} + '-' + ${ori.estado}"></option>
+															
 													</select>
 												</div>
+												
 												<div class="mb-3">
 													<label for="destino1" class="col-form-label">Destino:</label>
 													<select class="form-control" id="destino1" name="destino"
 														required>
 														<option value="" disabled selected>Selecione um
 															destino</option>
-														<jstl:forEach items="${cidades}" var="dest">
-															<option value="${dest.id_cidade}">${dest.cidade}-${dest.estado}</option>
-														</jstl:forEach>
+
+														<option th:each="dest : ${cidades}" th:value="${dest.id}"
+															th:text="${dest.cidade} + '-' + ${dest.estado}"></option>
+
 													</select>
 												</div>
 
@@ -389,7 +356,7 @@
 		$('.data').mask('00/00/0000');
 		$('.num_voo').mask('0000000000');
 		$('.assentos').mask('000');
-		$('.preco_unit').mask("#.##0,00", {reverse : true});
+		$('.preco_unit').mask("###0.00", {reverse : true});
 	</script>
 </body>
 </html>

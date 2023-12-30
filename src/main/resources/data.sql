@@ -31,16 +31,16 @@ insert into cidade(id, cidade, estado, pais, aeroporto)
 
 /*Voo*/
 
-insert into voo(id, num_voo, comp_aerea, assentos, preco_unit, data_partida, cidade_origem_id, cidade_destino_id)
+insert into voo(id, num_voo, comp_aerea, assentos, preco_unit, data_partida, origem_id, destino_id)
 	values(null, 101, "Latam Air Lines", 40, 980.00, "2023-11-12", 2, 5);
 	
-insert into voo(id, num_voo, comp_aerea, assentos, preco_unit, data_partida, cidade_origem_id, cidade_destino_id)
+insert into voo(id, num_voo, comp_aerea, assentos, preco_unit, data_partida, origem_id, destino_id)
 	values(null, 102, "Gol Air Lines", 50, 850.00, "2024-01-20", 3, 4);
 	
-insert into voo(id, num_voo, comp_aerea, assentos, preco_unit, data_partida, cidade_origem_id, cidade_destino_id)
+insert into voo(id, num_voo, comp_aerea, assentos, preco_unit, data_partida, origem_id, destino_id)
 	values(null, 103, "Voepass Linhas Aereas", 30, 1230.00, "2023-12-25", 1, 3);
 	
-insert into voo(id, num_voo, comp_aerea, assentos, preco_unit, data_partida, cidade_origem_id, cidade_destino_id)
+insert into voo(id, num_voo, comp_aerea, assentos, preco_unit, data_partida, origem_id, destino_id)
 	values(null, 104, "Azul Linhas Aéreas Brasileiras", 60, 820.00, "2024-01-10", 3, 1);
 
 

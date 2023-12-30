@@ -31,14 +31,14 @@ public class Cidade {
 	@Column(nullable = false)
 	private String aeroporto;
 	
-	@OneToMany(mappedBy = "cidade_origem")
+	@OneToMany(mappedBy = "origem")
 	private List<Voo> VoosOrigem;
 	
 	public List<Voo> getVooOrigem(){
 		return this.VoosOrigem;
 	}
 	
-	@OneToMany(mappedBy = "cidade_destino")
+	@OneToMany(mappedBy = "destino")
 	private List<Voo> VoosDestino;
 	
 	public List<Voo> getVooDestino(){
