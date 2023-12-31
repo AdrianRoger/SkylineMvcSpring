@@ -103,8 +103,8 @@
 													th:data-bs-target="'#update' + ${c.id}"><i class="bi bi-pencil-square"></i></a>
 													 
 												<a	href="" class="btn btn-sm btn-outline-danger"
-													data-bs-toggle="modal"
-													th:data-bs-target="'#delete' + ${c.id}"><i class="bi bi-trash3-fill"></i></a>
+													th:onclick="'deleteItem(\'/admin/contato\', ' + ${c.id} + ',' + '\'' + '__${c.nome}__' + '\'' + ');'">
+													<i class="bi bi-trash3-fill"></i></a>
 											</div>
 										</td>
 										
@@ -116,25 +116,38 @@
 														<button type="button" class="btn-close"
 															data-bs-dismiss="modal" aria-label="Close"></button>
 													</div>
-													<div class="modal-body">
-														<p>Nome : <span th:text="${c.nome}"></span></p>
-														<p>Email : <span th:text="${c.email}"></span></p>
-														<p>Telefone : <span th:text="${c.telefone}"></span></p>
-														<p>Mensagem : <span th:text="${c.mensagem}"></span></p>
-														<p>Resolvido : <span th:text="${c.resolvido ? 'Sim' : 'Não'}"></span></p>
-													</div>
+													<form method="post">	
+														<div class="modal-body">
+															<div class="form-group">
+																<input type="hidden" th:value="*{c.id}" name="id">
+																<input type="text" class="form-control mb-3"  
+																		th:value="*{c.nome}" name="nome" readonly>
+																<input type="email" class="form-control mb-3"  
+																	th:value="*{c.email}" name="email" readonly>
+																<input type="tel" class="form-control mb-3" 
+																	th:value="*{c.telefone}" name="telefone" readonly>
+																<textarea class="form-control mb-3" 
+																	th:text="*{c.mensagem}" th:value="*{c.mensagem}" name="mensagem" readonly></textarea>
+																	
+																<input type="text" class="form-control mb-3" 
+																	th:value="${c.resolvido ? 'Sim' : 'Não'}" readonly>
+																<input type="hidden" name="resolvido" value="true">
+															
+															</div>
+														</div>
 
-													<div class="modal-footer">
-														<button type="button" class="btn btn-secondary"
-															data-bs-dismiss="modal">Cancelar</button>
-														<a th:href="@{/admin/contato/{id}/update (id=${c.id})}"
-															class="btn btn-primary">Marcar como Concluído</a>
-													</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-secondary"
+																data-bs-dismiss="modal">Cancelar</button>
+															<button type="submit"	th:class="${c.resolvido ? 'btn btn-disabled disabled' : 'btn btn-primary'}">Marcar como Concluído</button>
+														</div>		
+													</form>
+														
 												</div>
 											</div>
 										</div>
 											
-										<div class="modal" th:id="'delete' + ${c.id}" tabindex="-1">
+<!--								    <div class="modal" th:id="'delete' + ${c.id}" tabindex="-1">
 											<div class="modal-dialog">
 												<div class="modal-content">
 													<div class="modal-header">
@@ -154,7 +167,7 @@
 													</div>
 												</div>
 											</div>
-										</div>
+										</div>-->
 									</tr>	
 							</table>
 						</div>
