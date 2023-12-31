@@ -11,6 +11,10 @@ insert into usuario(cpf, nome, email, telefone, cep, rua, numero, complemento, a
 insert into usuario(cpf, nome, email, telefone, cep, rua, numero, complemento, ativo)
 	values("000.000.000-03", "Marco Aurélio", "marco.aurelio@gmail.com", 
 	"(61)987654321", "72000-000", "Qnm 40 conj C", 35, null, true);
+	
+insert into usuario(cpf, nome, email, telefone, cep, rua, numero, complemento, ativo)
+	values("000.000.000-04", "Marco Aurélio 2", "marco.aurelio2@gmail.com", 
+	"(61)987654321", "72000-000", "Qnm 40 conj C", 35, null, true);
 
 /*Cidade*/
 

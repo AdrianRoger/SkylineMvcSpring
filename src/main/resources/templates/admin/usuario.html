@@ -74,6 +74,11 @@
 				<div class="row">
 					<div class="col">
 						<h1 class="text-center titulo-3">Clientes</h1>
+						<!-- div de mensagem de erro condicional-->
+							<div th:if="${param.error}" class="error-message">
+    						<p th:text="${param.error}"></p>
+							</div>
+						
 						<hr class="group-divider">
 						<div class="table-responsive">
 							<table class="table table-striped text-center">
@@ -94,7 +99,7 @@
 										<td class="text-nowrap">
 											<a class="link-underline link-underline-opacity-0" href="#" 
 											data-bs-toggle="modal" th:data-bs-target="'#updateCpf' + '__${usu.cpf}__'" title="Editar cpf">
-											<i class="bi bi-pencil-fill me-2 "></i>${cli.cpf}</a>
+											<i class="bi bi-pencil-fill me-2 " th:text="' ' + '__${usu.cpf}__'"></i></a>
 										</td>
 										<td th:text="${usu.nome}"></td>
 										<td th:text="${usu.email}"></td>
@@ -108,33 +113,34 @@
 											<div class="btn-group">
 												<a href="#" class="btn btn-sm btn-outline-secondary"
 													data-bs-toggle="modal" th:data-bs-target="'#update' + '__${usu.cpf}__'"><i class="bi bi-pencil-square"></i></a>
-												<a href="#" class="btn btn-sm btn-outline-danger"
-													data-bs-toggle="modal" th:data-bs-target="'#detalhe' + '__${cli.cpf}__'"><i class="bi bi-trash3-fill"></i></a>
+												<button class="btn btn-sm btn-outline-danger"
+													 th:onclick="'deleteItem(\'/admin/usuario\',' + '\'__${usu.cpf}__\'' + ', ' + '\'__${usu.nome}__\'' + ');'">
+													 <i class="bi bi-trash3-fill"></i></button>
 											</div>
 										</td>
-									</tr>
+									
 									<!-- Modal Update CPF -->
-									<div class="modal" id="updateCpf${cli.cpf}" tabindex="-1">
+									<div class="modal" th:id="'updateCpf' + '__${usu.cpf}__'" tabindex="-1">
 										<div class="modal-dialog">
 											<div class="modal-content">
 												<div class="modal-header">
-													<h5 class="modal-title">Alterar CPF: ${cli.nome}</h5>
+													<h5 class="modal-title" th:text="'Alterar CPF: ' + '__${usu.nome}__'"></h5>
 
 													<button type="button" class="btn-close"
 														data-bs-dismiss="modal" aria-label="Close"></button>
 												</div>
 												<div class="modal-body">
-													<form action="/SkylineMvcServlet/clientes-updateCpf">
+													<form method="post" th:action="@{/admin/usuario/update/cpf}">
 
 														<div class="mb-3">
 															<label for="cpf" class="col-form-label">CPF Atual:</label> 
 															<input type="text" class="form-control cpf"
-																id="cpf" name="oldcpf" value="${cli.cpf}" readonly>
+																id="cpf" name="old" th:value="${usu.cpf}" readonly>
 														</div>
 														<div class="mb-3">
 															<label for="cpf" class="col-form-label">Novo CPF:</label> 
 															<input type="text" class="form-control cpf"
-																id="cpf" name="newcpf" required>
+																id="cpf" name="cpf" required>
 														</div>
 														
 														<div class="modal-footer">
@@ -150,7 +156,7 @@
 									</div>
 			
 									<!-- MODAL DETALHES para delete -->
-									<div class="modal" id="detalhe${cli.cpf}" tabindex="-1">
+									<div class="modal" th:id="'delete' + '__${usu.cpf}__'" tabindex="-1">
 										<div class="modal-dialog">
 											<div class="modal-content">
 												<div class="modal-header">
@@ -160,45 +166,45 @@
 												</div>
 												<div class="modal-body">
 													<p>
-														<strong>Nome: </strong> ${cli.nome}
+														<strong>Nome: </strong> <span th:text="${usu.nome}"></span>
 													</p>
 													<p>
-														<strong>CPF: </strong> ${cli.cpf}
+														<strong>CPF: </strong> <span th:text="${usu.cpf}"></span>
 													</p>
 													<p>
-														<strong>Email: </strong> ${cli.email}
+														<strong>Email: </strong> <span th:text="${usu.email}"></span>
 													</p>
 													<p>
-														<strong>Telefone: </strong> ${cli.telefone}
+														<strong>Telefone: </strong> <span th:text="${usu.telefone}"></span>
 													</p>
 													<p>
-														<strong>Cep: </strong> ${cli.cep}
+														<strong>Cep: </strong> <span th:text="${usu.cep}"></span>
 													</p>
 													<p>
-														<strong>Rua: </strong> ${cli.rua}
+														<strong>Rua: </strong> <span th:text="${usu.rua}"></span>
 													</p>
 													<p>
-														<strong>Número: </strong> ${cli.numero}
+														<strong>Número: </strong> <span th:text="${usu.numero}"></span>
 													</p>
 													<p>
-														<strong>Complemento: </strong> ${cli.complemento}
+														<strong>Complemento: </strong> <span th:text="${usu.complemento}"></span>
 													</p>
 													<p>
-														<strong>Ativo: </strong> ${cli.ativo ? 'Sim' : 'Não'}
+														<strong>Ativo: </strong> <span th:text="${usu.ativo? 'Sim' : 'Não' }"></span>
 													</p>
 
 												</div>
 												<div class="modal-footer">
 													<button type="button" class="btn btn-sm btn-secondary"
 														data-bs-dismiss="modal">Cancelar</button>
-													<a href="clientes-delete?cpf=${cli.cpf}"
-														class="btn btn-sm btn-danger">Excluir</a>
+													<a href="#" class="btn btn-sm btn-danger"
+													th:onlclick="'deleteItem(\'/admin/usuario\',' + '\'__${usu.cpf}__\'' + ', ' + '\'__${usu.nome}__\'' + ');'">Excluir</a>
 												</div>
 											</div>
 										</div>
 									</div>
 									<!-- MODAL CLIENTES-UPDATE -->
-									<div class="modal" id="update${cli.cpf}" tabindex="-1">
+									<div class="modal" th:id="'update' + '__${usu.cpf}__'" tabindex="-1">
 										<div class="modal-dialog">
 											<div class="modal-content">
 												<div class="modal-header">
@@ -207,60 +213,61 @@
 														data-bs-dismiss="modal" aria-label="Close"></button>
 												</div>
 												<div class="modal-body">
-													<form action="/SkylineMvcServlet/clientes-update">
+													<form method="post" th:action="@{/admin/usuario/update}">
 
 														<div class="mb-3">
 															<label for="cpf" class="col-form-label">CPF do Cliente:</label> 
 															<input type="text" class="form-control cpf"
-																id="cpf" name="cpf" value="${cli.cpf}" readonly>
+																id="cpf" name="cpf" th:value="${usu.cpf}" readonly>
 														</div>
 														
 														<div class="mb-3">
 															<label for="nome" class="col-form-label">Nome:</label> 
 															<input type="text" class="form-control nome"
-																id="nome" name="nome" value="${cli.nome}" required>
+																id="nome" name="nome" th:value="*{usu.nome}" required>
 														</div>
 														
 														<div class="mb-3">
 															<label for="email" class="col-form-label">Email:</label>
 															<input type="email" class="form-control email" id="email"
-																name="email" value="${cli.email}" required>
+																name="email" th:value="*{usu.email}" required>
 														</div>
 														
 														<div class="mb-3">
 															<label for="telefone" class="col-form-label">Telefone:</label> 
 															<input type="tel" class="form-control telefone" id="telefone" 
-															value="${cli.telefone}" placeholder="(99)99999-9999" name="telefone">
+															th:value="*{usu.telefone}" placeholder="(99)99999-9999" name="telefone">
 														</div>
 														
 														<div class="mb-3">
 															<label for="cep" class="col-form-label">CEP: </label> 
 															<input type="text" class="form-control cep"
-																id="cep" name="cep" placeholder="99999-999" value="${cli.cep}" required>
+																id="cep" name="cep" placeholder="99999-999" th:value="*{usu.cep}" required>
 														</div>
 														
 														<div class="mb-3">
 															<label for="rua" class="col-form-label">Rua:</label> 
 															<input type="text" class="form-control rua"
-																id="rua" name="rua" value="${cli.rua}" required>
+																id="rua" name="rua" th:value="*{usu.rua}" required>
 														</div>
 														
 														<div class="mb-3">
 															<label for="numero" class="col-form-label">Número:</label> 
 															<input type="text" class="form-control"
-																id="numero" name="numero" value="${cli.numero}" required>
+																id="numero" name="numero" th:value="*{usu.numero}" required>
 														</div>
 														
 														<div class="mb-3">
 															<label for="complemento" class="col-form-label">Complemento:</label> 
 															<input type="text" class="form-control"
-																id="complemento" name="complemento" value="${cli.complemento}">
+																id="complemento" name="complemento" th:value="${usu.complemento}">
 														</div>
 														
 														<div class="mb-3">
-															<label for="ativo" class="col-form-label">Ativo:</label> 
+															<label for="ativo" class="col-form-label">Ativo:</label>
+															<input type="hidden" name="ativo" th:value="${usu.ativo}" readonly>
 															<input type="text" class="form-control"
-																id="ativo" name="ativo" value="${cli.ativo ? 'Sim' : 'Não'}" readonly>
+																id="ativo" th:value="${usu.ativo ? 'Sim' : 'Não'}" readonly>
 														</div>
 
 														<div class="modal-footer">
@@ -274,7 +281,7 @@
 											</div>
 										</div>
 									</div>
-								</jstl:forEach>
+								</tr>
 
 							</table>
 							
@@ -291,7 +298,7 @@
 												data-bs-dismiss="modal" aria-label="Close"></button>
 										</div>
 										<div class="modal-body">
-											<form action="/SkylineMvcServlet/clientes-create">
+											<form method="post" th:action="@{/admin/usuario/create}">
 											
 												<div class="mb-3">
 													<label for="cpf" class="col-form-label">CPF:</label> 
