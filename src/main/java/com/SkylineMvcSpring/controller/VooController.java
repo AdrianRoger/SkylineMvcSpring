@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -45,21 +43,9 @@ public class VooController {
 		return modelAndView;
 	}
 	
-	//Rota para criar registro
+	//Rota para criar e atualizar registro
 	@PostMapping
-	public ModelAndView create(@ModelAttribute("form") Voo voo, @RequestParam long origem, @RequestParam Long destino) throws IOException {
-		ModelAndView modelAndView = new ModelAndView("redirect:/admin/voo");
-		
-		voo.setOrigem(cidadeRepository.findById(origem).get());
-		voo.setDestino(cidadeRepository.findById(destino).get());
-		vooRepository.save(voo);
-		
-		return modelAndView;
-	}
-	
-	//Rota para Atualizar registro
-	@PutMapping
-	public ModelAndView update(@ModelAttribute Voo voo) throws IOException {
+	public ModelAndView createOrUpdate(@ModelAttribute("form") Voo voo) throws IOException {
 		ModelAndView modelAndView = new ModelAndView("redirect:/admin/voo");
 
 		vooRepository.save(voo);
