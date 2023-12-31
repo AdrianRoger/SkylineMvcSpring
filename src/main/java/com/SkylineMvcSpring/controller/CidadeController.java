@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -39,24 +38,15 @@ public class CidadeController {
 		return modelAndView;
 	}
 	
-	//criar
+	//criar e atualizar
 	@PostMapping
-	public ModelAndView create(@ModelAttribute("form") Cidade cidade) throws IOException {
+	public ModelAndView createOrUpadate(@ModelAttribute("form") Cidade cidade) throws IOException {
 		ModelAndView modelAndView = new ModelAndView("redirect:/admin/cidade");
 		
 		cidadeRepository.save(cidade);
 		return modelAndView;
 	}
-	
-	//atualizar
-	@PutMapping
-	public ModelAndView update(@ModelAttribute Cidade cidade) throws IOException{
-		ModelAndView modelAndView = new ModelAndView("redirect:/admin/cidade");
 		
-		cidadeRepository.save(cidade);
-		return modelAndView;
-	}
-	
 	//deletar
 	@DeleteMapping("/{id}")
 	public ModelAndView delete(@PathVariable Long id) {
