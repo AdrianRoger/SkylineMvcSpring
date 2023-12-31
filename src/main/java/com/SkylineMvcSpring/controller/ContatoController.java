@@ -29,7 +29,7 @@ public class ContatoController {
 	//Método para listar
 	@GetMapping
 	public ModelAndView listar() {
-		ModelAndView modelAndView = new ModelAndView("admin/contato");
+		ModelAndView modelAndView = new ModelAndView("/admin/contato");
 		
 		List<Contato> contatos = contatoRepository.findAll();
 		modelAndView.addObject("contatos", contatos);
