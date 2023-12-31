@@ -69,7 +69,7 @@
 					<div class="col">
 						<h1 class="text-center titulo-3">Fale Conosco</h1>
 						<hr class="group-divider">
-						<form method="post" th:object="${contato}">
+						<form method="post" th:object="${contato}" th:action="@{/admin/contato}">
 							<div class="form-group">
 								<input type="text" class="form-control mb-3" id="idnome" th:field="*{nome}" placeholder="Nome Completo" maxlength="80" required>
 								<input type="email" class="form-control mb-3" id="idemail" th:field="*{email}"
