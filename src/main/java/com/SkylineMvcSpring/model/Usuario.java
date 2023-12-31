@@ -15,7 +15,7 @@ public class Usuario {
 	
 	@Id
 	@Column(name = "cpf", nullable = false, unique = true)
-	private String CPF;
+	private String cpf;
 	
 	@Column(nullable = false)
 	private String nome;
@@ -52,10 +52,10 @@ public class Usuario {
 		
 	}
 
-	public Usuario(String cPF, String nome, String email, String telefone, String cep, String rua, int numero,
+	public Usuario(String cpf, String nome, String email, String telefone, String cep, String rua, int numero,
 			String complemento, boolean ativo) {
 		super();
-		CPF = cPF;
+		this.cpf = cpf;
 		this.nome = nome;
 		this.email = email;
 		this.telefone = telefone;
@@ -66,12 +66,12 @@ public class Usuario {
 		this.ativo = ativo;
 	}
 
-	public String getCPF() {
-		return CPF;
+	public String getCpf() {
+		return cpf;
 	}
 
-	public void setCPF(String cPF) {
-		CPF = cPF;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 	public String getNome() {
@@ -140,7 +140,7 @@ public class Usuario {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(CPF, ativo, cep, complemento, email, nome, numero, rua, telefone);
+		return Objects.hash(cpf, ativo, cep, complemento, email, nome, numero, rua, telefone);
 	}
 
 	@Override
@@ -152,7 +152,7 @@ public class Usuario {
 		if (getClass() != obj.getClass())
 			return false;
 		Usuario other = (Usuario) obj;
-		return Objects.equals(CPF, other.CPF) && ativo == other.ativo && Objects.equals(cep, other.cep)
+		return Objects.equals(cpf, other.cpf) && ativo == other.ativo && Objects.equals(cep, other.cep)
 				&& Objects.equals(complemento, other.complemento) && Objects.equals(email, other.email)
 				&& Objects.equals(nome, other.nome) && numero == other.numero && Objects.equals(rua, other.rua)
 				&& Objects.equals(telefone, other.telefone);
@@ -160,7 +160,7 @@ public class Usuario {
 	
 	@Override
 	public String toString() {
-		return "Usuario [CPF=" + CPF + ", nome=" + nome + ", email=" + email + ", telefone=" + telefone + ", cep=" + cep
+		return "Usuario [cpf=" + cpf + ", nome=" + nome + ", email=" + email + ", telefone=" + telefone + ", cep=" + cep
 				+ ", rua=" + rua + ", numero=" + numero + ", complemento=" + complemento + ", ativo=" + ativo + "]";
 	}
 	

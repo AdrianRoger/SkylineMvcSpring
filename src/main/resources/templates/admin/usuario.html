@@ -12,7 +12,7 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
-<link rel="stylesheet" href="./assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/style.css">
 
 <title>Clientes</title>
 </head>
@@ -25,7 +25,7 @@
 			<div class="container-fluid d-flex justify-content-between">
 				<a href="index.html"
 					class="navbar-brand d-flex align-items-center logo"> <img
-					class="logotipo-2" src="./assets/img/logo_white.png" alt="Logotipo">
+					class="logotipo-2" src="../../assets/img/logo_white.png" alt="Logotipo">
 					Skyline
 				</a>
 				<button class="navbar-toggler mx-sm-3" type="button"
@@ -46,7 +46,7 @@
 									type="button" data-bs-toggle="dropdown" aria-expanded="false">
 									Admin Pages</button>
 								<ul class="dropdown-menu">
-									<li><a class="dropdown-item" href="/admin/cliente">Clientes</a></li>
+									<li><a class="dropdown-item" href="/admin/usuario">Clientes</a></li>
 									<li><a class="dropdown-item" href="/admin/contato">Contato</a></li>
 									<li><a class="dropdown-item" href="/admin/cidade">Cidades</a></li>
 									<li><a class="dropdown-item" href="/admin/voo">Vôo</a></li>
@@ -90,27 +90,26 @@
 									<th>Ativo</th>
 									<th>Ações</th>
 								</tr>
-								<jstl:forEach items="${clientes}" var="cli">
-									<tr>
+									<tr th:each="usu : ${usuarios}">
 										<td class="text-nowrap">
 											<a class="link-underline link-underline-opacity-0" href="#" 
-											data-bs-toggle="modal" data-bs-target="#updateCpf${cli.cpf}" title="Editar cpf">
+											data-bs-toggle="modal" th:data-bs-target="'#updateCpf' + '__${usu.cpf}__'" title="Editar cpf">
 											<i class="bi bi-pencil-fill me-2 "></i>${cli.cpf}</a>
 										</td>
-										<td>${cli.nome}</td>
-										<td>${cli.email}</td>
-										<td>${cli.telefone}</td>
-										<td>${cli.cep}</td>
-										<td>${cli.rua}</td>
-										<td>${cli.numero}</td>
-										<td>${cli.complemento}</td>
-										<td>${cli.ativo ? 'Sim' : 'Não' }</td>
+										<td th:text="${usu.nome}"></td>
+										<td th:text="${usu.email}"></td>
+										<td th:text="${usu.telefone}"></td>
+										<td th:text="${usu.cep}"></td>
+										<td th:text="${usu.rua}"></td>
+										<td th:text="${usu.numero}"></td>
+										<td th:text="${usu.complemento}"></td>
+										<td th:text="${usu.ativo ? 'Sim' : 'Não' }"></td>
 										<td>
 											<div class="btn-group">
 												<a href="#" class="btn btn-sm btn-outline-secondary"
-													data-bs-toggle="modal" data-bs-target="#update${cli.cpf}"><i class="bi bi-pencil-square"></i></a>
+													data-bs-toggle="modal" th:data-bs-target="'#update' + '__${usu.cpf}__'"><i class="bi bi-pencil-square"></i></a>
 												<a href="#" class="btn btn-sm btn-outline-danger"
-													data-bs-toggle="modal" data-bs-target="#detalhe${cli.cpf}"><i class="bi bi-trash3-fill"></i></a>
+													data-bs-toggle="modal" th:data-bs-target="'#detalhe' + '__${cli.cpf}__'"><i class="bi bi-trash3-fill"></i></a>
 											</div>
 										</td>
 									</tr>
@@ -441,7 +440,7 @@
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
-	<script src="./assets/js/script.js"></script>
+	<script src="../../assets/js/script.js"></script>
 	<script>		
 		$('.cpf').mask('000.000.000-00');
 	  $(document).ready(function() {
