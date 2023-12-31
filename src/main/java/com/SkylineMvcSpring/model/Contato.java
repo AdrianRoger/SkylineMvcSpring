@@ -30,7 +30,7 @@ public class Contato {
 	private String mensagem;
 	
 	@Column(columnDefinition = "boolean default false")
-	private Boolean resolvido;
+	private boolean resolvido;
 	
 	public Contato() {
 		
