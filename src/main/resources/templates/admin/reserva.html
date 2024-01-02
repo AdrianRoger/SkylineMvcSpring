@@ -12,7 +12,7 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
-<link rel="stylesheet" href="./assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/style.css">
 
 <title>Reservas</title>
 </head>
@@ -23,9 +23,9 @@
 		<!-- Começo do menu de navegação -->
 		<nav class="navbar navbar-expand-md bg-fundo navbar-dark pe-2">
 			<div class="container-fluid d-flex justify-content-between">
-				<a href="index.html"
+				<a href="/"
 					class="navbar-brand d-flex align-items-center logo"> <img
-					class="logotipo-2" src="./assets/img/logo_white.png" alt="Logotipo">
+					class="logotipo-2" src="../../assets/img/logo_white.png" alt="Logotipo">
 					Skyline
 				</a>
 				<button class="navbar-toggler mx-sm-3" type="button"
@@ -88,117 +88,80 @@
 									<th>Cancelada</th>
 									<th>Ações</th>
 								</tr>
-								<jstl:forEach items="${reservas}" var="res">
-									<input type="hidden" id="id" name="id" value="${v.id_voo}">
-									<tr>
-										<td>${res.data_reserva}</td>
-										<td>${res.num_pessoas}</td>
-										<td>${res.cliente.cpf} ${res.cliente.nome}</td>
-										<td>R$ ${res.voo.preco_unit * res.num_pessoas}</td>
-										<td>${res.voo.origem.cidade}-${res.voo.origem.estado}</td>
-										<td>${res.voo.destino.cidade}-${res.voo.destino.estado}</td>
+
+									<tr th:each="res : ${reservas}">
+										<td th:text="${#temporals.format(res.data_reserva, 'dd/MM/yyyy')}"></td>
+										<td th:text="${res.num_pessoas}"></td>
+										<td th:text="'__${res.usuario.cpf}__' + '-' + '__${res.usuario.nome}__'"></td>
+										<td th:text="'R$ ' + '__${res.voo.preco_unit * res.num_pessoas}__'"></td>
+										<td th:text="'__${res.voo.origem.cidade}__' + '-' + '__${res.voo.origem.estado}__'"></td>
+										<td th:text="'__${res.voo.destino.cidade}__' + '-' + '__${res.voo.destino.estado}__'"></td>
 										<td>
-											<a href="#" data-bs-toggle="modal" data-bs-target="#cancel${res.id_reserva}">
-												${res.cancelada ? 'Sim' : 'Não'} <i class="bi bi-pencil-fill"></i>
+											<a href="#" class="text-decoration-none" data-bs-toggle="modal" 
+												th:data-bs-target="'#cancel' + '__${res.id}__'">
+													<span th:text="'__${res.cancelada ? 'Sim' : 'Não'}__'"></span>
+													<i class="bi bi-pencil-fill"></i>
 											</a>
 										</td>
 										<td>
 											<div class="btn-group">
 												<a href="#" class="btn btn-sm btn-outline-secondary"
-													data-bs-toggle="modal" data-bs-target="#update${res.id_reserva}"><i class="bi bi-pencil-square"></i></a>
-												<a href="#" class="btn btn-sm btn-outline-danger"
-													data-bs-toggle="modal" data-bs-target="#detalhe${res.id_reserva}"><i class="bi bi-trash3-fill"></i></a>
+													data-bs-toggle="modal" th:data-bs-target="'#update' + '__${res.id}__'"><i class="bi bi-pencil-square"></i>
+												</a>
+												<button class="btn btn-sm btn-outline-danger" 
+													th:onclick="'deleteItem(\'/admin/reserva\', ' + '__${res.id}__' + ', ' + '\'__${res.usuario.cpf}__' + '-' + '__${res.usuario.nome}__\');'">
+													<i class="bi bi-trash3-fill"></i>
+												</button>
 											</div>
 										</td>
-									</tr>
 									
-									<div class="modal" id="cancel${res.id_reserva}" tabindex="-1">
-										<div class="modal-dialog">
-											<div class="modal-content">
-												<div class="modal-header">
-													<h5 class="modal-title">Detalhes da Reserva</h5>
-													<button type="button" class="btn-close"
-														data-bs-dismiss="modal" aria-label="Close"></button>
-												</div>
-												<div class="modal-body">
-													<p>
-														<strong>Data da reserva: </strong> ${res.data_reserva}
-													</p>
-													<p>
-														<strong>Quantidade de pessoas: </strong> ${res.num_pessoas}
-													</p>
-													<p>
-														<strong>Cliente: </strong> ${res.cliente.cpf} ${res.cliente.nome}
-													</p>
-													<p>
-														<strong>Preço total:</strong> R$ ${res.voo.preco_unit * res.num_pessoas}
-													</p>
-													<p>
-														<strong>Origem:</strong> ${res.voo.origem.cidade}-${res.voo.origem.estado}
-													</p>
-													<p>
-														<strong>Destino:</strong> ${res.voo.destino.cidade}-${res.voo.destino.estado}
-													</p>
-													<p>
-														<strong>Cancelada:</strong> ${res.cancelada ? 'Sim' : 'Não'}
-													</p>
-
-												</div>
-												<div class="modal-footer">
-													<button type="button" class="btn btn-sm btn-secondary"
-														data-bs-dismiss="modal">Voltar</button>
-													<a href="reservas-cancel?id=${res.id_reserva}"
-														class="${res.cancelada ? 'btn btn-sm btn-disabled disabled' : 'btn btn-sm btn-danger' }">
-														Cancelar Reserva
-													</a>
+										<div class="modal" th:id="'cancel' + '__${res.id}__'" tabindex="-1">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title">Detalhes da Reserva</h5>
+														<button type="button" class="btn-close"
+															data-bs-dismiss="modal" aria-label="Close"></button>
+													</div>
+													<div class="modal-body">
+														<p>
+															<strong>Data da reserva: </strong> <span th:text="${#temporals.format(res.data_reserva, 'dd/MM/yyyy')}"></span>
+														</p>
+														<p>
+															<strong>Quantidade de pessoas: </strong> <span th:text="${res.num_pessoas}"></span>
+														</p>
+														<p>
+															<strong>Cliente: </strong> <span th:text="'__${res.usuario.cpf}__'+' __${res.usuario.nome}__'"></span>
+														</p>
+														<p>
+															<strong>Preço total:</strong> <san th:text="'R$ '+'__${res.voo.preco_unit * res.num_pessoas}__'"></san>
+														</p>
+														<p>
+															<strong>Origem:</strong> <span th:text="'__${res.voo.origem.cidade}__'+'-'+'__${res.voo.origem.estado}__'"></span>
+														</p>
+														<p>
+															<strong>Destino:</strong> <span th:text="'__${res.voo.destino.cidade}__'+'-'+'__${res.voo.destino.estado}__'"></span>
+														</p>
+														<p>
+															<strong>Cancelada:</strong> <span th:text="'__${res.cancelada ? 'Sim' : 'Não'}__'"></span>
+														</p>
+	
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-sm btn-secondary"
+															data-bs-dismiss="modal">Voltar</button>
+														<a th:href="@{/admin/reserva/cancel/{id} (id=${res.id})}"
+															th:class="${res.cancelada ? 'btn btn-sm btn-disabled disabled' : 'btn btn-sm btn-danger' }">
+															Cancelar Reserva
+														</a>
+													</div>
 												</div>
 											</div>
 										</div>
-									</div>
 									
-									<div class="modal" id="detalhe${res.id_reserva}" tabindex="-1">
-										<div class="modal-dialog">
-											<div class="modal-content">
-												<div class="modal-header">
-													<h5 class="modal-title">Detalhes da Reserva</h5>
-													<button type="button" class="btn-close"
-														data-bs-dismiss="modal" aria-label="Close"></button>
-												</div>
-												<div class="modal-body">
-													<p>
-														<strong>Data da reserva: </strong> ${res.data_reserva}
-													</p>
-													<p>
-														<strong>Quantidade de pessoas: </strong> ${res.num_pessoas}
-													</p>
-													<p>
-														<strong>Cliente: </strong> ${res.cliente.cpf} ${res.cliente.nome}
-													</p>
-													<p>
-														<strong>Preço total:</strong> R$ ${res.voo.preco_unit * res.num_pessoas}
-													</p>
-													<p>
-														<strong>Origem:</strong> ${res.voo.origem.cidade}-${res.voo.origem.estado}
-													</p>
-													<p>
-														<strong>Destino:</strong> ${res.voo.destino.cidade}-${res.voo.destino.estado}
-													</p>
-													<p>
-														<strong>Cancelada:</strong> ${res.cancelada ? 'Sim' : 'Não'}
-													</p>
 
-												</div>
-												<div class="modal-footer">
-													<button type="button" class="btn btn-sm btn-secondary"
-														data-bs-dismiss="modal">Cancelar</button>
-													<a href="reservas-delete?id=${res.id_reserva}"
-														class="btn btn-sm btn-danger">Excluir</a>
-												</div>
-											</div>
-										</div>
-									</div>
 									<!-- Meu Trabalho Continua daqui -->
-									<div class="modal" id="update${res.id_reserva}" tabindex="-1 ">
+									<div class="modal" th:id="'update' + '__${res.id}__'" tabindex="-1 ">
 										<div class="modal-dialog">
 											<div class="modal-content">
 												<div class="modal-header">
@@ -207,35 +170,40 @@
 														data-bs-dismiss="modal" aria-label="Close"></button>
 												</div>
 												<div class="modal-body">
-													<form action="/SkylineMvcServlet/reservas-update">
-														<input type="hidden" value="${res.id_reserva}" name="id">
+													<form method="post">
+														<input type="hidden" th:value="${res.id}" name="id">
+														<input type="hidden" th:value="${res.data_reserva}" name="data_reserva">
+														<input type="hidden" th:value="'__${res.usuario.cpf}__'" name="usuario">
 
 														<div class="mb-3">
-															<label for="num_pessoas" class="col-form-label">Quantidade
-																de pessoas:</label> <input type="text" class="form-control num_pessoas"
-																id="num_pessoas" name="num_pessoas" value="${res.num_pessoas}" required>
+															<label for="num_pessoas" class="col-form-label">Quantidade de pessoas:</label> 
+															<input type="text" class="form-control num_pessoas"
+																id="num_pessoas" name="num_pessoas" th:value="${res.num_pessoas}" required>
 														</div>
 														
 														<div class="mb-3">
 															<label for="cancelada" class="col-form-label">Cancelada:</label> 
+															<input type="hidden" name="cancelada" value="false">
 															<input type="text" class="form-control" id="cancelada1" 
-																name="cancelada" value="${res.cancelada ? 'Sim' : 'Não'}" readonly>
+																th:value="'__${res.cancelada ? 'Sim' : 'Não'}__'" readonly>
 														</div>
 
 														<div class="mb-3">
 															<label for="voo" class="col-form-label">Vôo:</label> <select
 																class="form-control" id="voo" name="voo" required>
-																<option value="" disabled selected>
-																	${res.voo.origem.cidade}-${res.voo.origem.estado} para 
-																	${res.voo.destino.cidade}-${res.voo.destino.estado}
-																	${res.voo.data_partida} preço unitário R$ ${res.voo.preco_unit}
+																<option value="" th:text="'__${res.voo.origem.cidade}__-__${res.voo.origem.estado}__ para ' + 
+																	'__${res.voo.destino.cidade}__-__${res.voo.destino.estado}__' +
+																	' __${#temporals.format(res.voo.data_partida, 'dd/MM/yyyy')}__ ' +
+																	'preço unitário R$ __${res.voo.preco_unit}__'"
+																	disabled selected>
 																</option>
-																<jstl:forEach items="${voos}" var="v">
-																	<option value="${v.id_voo}">
-																		${v.origem.cidade}-${v.origem.estado} para
-																		${v.destino.cidade}-${v.destino.estado}
-																		${v.data_partida} preço unitário R$ ${v.preco_unit}</option>
-																</jstl:forEach>
+															
+																<option th:each="v : ${voos}" th:value="${v.id}" 
+																	th:text="'__${v.origem.cidade}__-__${v.origem.estado}__ para ' +
+																	'__${v.destino.cidade}__-__${v.destino.estado}__' +
+																	' __${#temporals.format(v.data_partida, 'dd/MM/yyyy')}__ ' + 
+																	'preço unitário R$ __${v.preco_unit}__'">
+																</option>
 															</select>
 														</div>
 
@@ -250,7 +218,7 @@
 											</div>
 										</div>
 									</div>
-								</jstl:forEach>
+								</tr>
 
 							</table>
 							<a href="#" class="btn btn-outline-light btn-fundo"
@@ -265,7 +233,8 @@
 												data-bs-dismiss="modal" aria-label="Close"></button>
 										</div>
 										<div class="modal-body">
-											<form action="/SkylineMvcServlet/reservas-create">
+											
+											<form method="POST">
 												<div class="mb-3">
 													<label for="num_pessoas1" class="col-form-label">Quantidade
 														de pessoas:</label> <input type="text" class="form-control num_pessoas"
@@ -274,13 +243,10 @@
 												
 												<div class="mb-3">
 													<label for="assentos1" class="col-form-label">Cliente:</label>
-													<select class="form-control" id="clientes1" name="cliente"
-														required>
-														<option value="" disabled selected>Selecione um
-															cliente:</option>
-														<jstl:forEach items="${clientes}" var="cli">
-															<option value="${cli.cpf}">${cli.cpf}-${cli.nome}</option>
-														</jstl:forEach>
+													<select class="form-control" id="clientes1" name="usuario" required>
+														<option value="" disabled selected>Selecione um cliente:</option>
+														<option th:each="usu : ${usuarios}" th:value="'__${usu.cpf}__'" 
+														th:text="'__${usu.cpf}__' + '-' + '__${usu.nome}__'"></option>
 													</select>
 												</div>
 												
@@ -288,14 +254,13 @@
 													<label for="voo1" class="col-form-label">Vôo:</label>
 													<select class="form-control" id="voo1" name="voo"
 														required>
-														<option value="" disabled selected>Selecione um
-															Vôo</option>
-														<jstl:forEach items="${voos}" var="v">
-															<option value="${v.id_voo}">
-																${v.origem.cidade}-${v.origem.estado} para ${v.destino.cidade}-${v.destino.estado}
-																${v.data_partida} preço unitário R$ ${v.preco_unit}
+														<option value="" disabled selected>Selecione um Vôo</option>
+															<option th:each="v : ${voos}" th:value="'__${v.id}__'"
+																th:text="'__${v.origem.cidade}__' + '-' + '__${v.origem.estado}__' +
+																 ' para ' + '__${v.destino.cidade}__' + '-' + '__${v.destino.estado}__' +
+																 ' __${#temporals.format(v.data_partida, 'dd/MM/yyyy')}__' +
+																 ' preço unitário R$ ' + '__${v.preco_unit}__'">
 															</option>
-														</jstl:forEach>
 													</select>
 												</div>
 												
@@ -398,7 +363,7 @@
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
-	<script src="./assets/js/script.js"></script>
+	<script src="../../assets/js/script.js"></script>
 	<script>
 //		$('.data').mask('00/00/0000');
 		$('.num_pessoas').mask('000');
