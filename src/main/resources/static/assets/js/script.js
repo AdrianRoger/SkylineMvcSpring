@@ -78,7 +78,7 @@ function deleteItem(url, id, ref) {
 	let xhr = new XMLHttpRequest();
 	
 	if(userConfirm){
-    xhr.open('DELETE', url + '/' + id, true);
+    xhr.open( 'GET' , url + '/' + id, true);
     	
 			xhr.onload = function () {
 	      window.location.href = xhr.responseURL;
