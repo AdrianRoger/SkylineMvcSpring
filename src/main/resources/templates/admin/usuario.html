@@ -23,7 +23,7 @@
 		<!-- Começo do menu de navegação -->
 		<nav class="navbar navbar-expand-md bg-fundo navbar-dark pe-2">
 			<div class="container-fluid d-flex justify-content-between">
-				<a href="index.html"
+				<a href="/"
 					class="navbar-brand d-flex align-items-center logo"> <img
 					class="logotipo-2" src="../../assets/img/logo_white.png" alt="Logotipo">
 					Skyline
@@ -203,7 +203,7 @@
 											</div>
 										</div>
 									</div>
-									<!-- MODAL CLIENTES-UPDATE -->
+									<!-- MODAL USUARIO-UPDATE -->
 									<div class="modal" th:id="'update' + '__${usu.cpf}__'" tabindex="-1">
 										<div class="modal-dialog">
 											<div class="modal-content">
@@ -287,9 +287,9 @@
 							
 							<!--  MODAL CREATE -->
 							<a href="#" class="btn btn-outline-light btn-fundo"
-								data-bs-toggle="modal" data-bs-target="#createClientes">Cadastrar
+								data-bs-toggle="modal" data-bs-target="#createUsuario">Cadastrar
 								Cliente</a>
-							<div class="modal" id="createClientes" tabindex="-1">
+							<div class="modal" id="createUsuario" tabindex="-1">
 								<div class="modal-dialog">
 									<div class="modal-content">
 										<div class="modal-header">
@@ -432,7 +432,6 @@
 				</div>
 			</div>
 			<div class="marca-pessoal">
-				<!-- <p>Página Desenvolvida por <strong>Adrian Roger</strong>.  -->
 				<a class="git-link fs-3" href="https://github.com/AdrianRoger"
 					target="_blank"><i class="bi bi-github me-2"></i>github.com/AdrianRoger</a>
 			</div>
@@ -458,7 +457,6 @@
 		  });
 		$('.telefone').mask('(00)00000-0000');
 		$('.cep').mask('00000-000');
-// 		$('.numero').mask('###000');
 		$(document).ready(function() {
 		    $('.numero').on('input', function() {
 		      let formatado = $(this).val().replace(/[^0-9]/g, ''); // Permite apenas números de 0 a 9

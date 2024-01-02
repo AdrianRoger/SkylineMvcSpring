@@ -2,7 +2,6 @@ window.display = ScrollReveal({reset:true});
 
 ScrollReveal({ distance: '20px' });
 display.reveal('.revelar', { origin: 'top' });
-// display.reveal('.revelar',{duration:1000});
 display.reveal('.gp-revelar', {interval:100});
 // fim revelar function
 //até aqui o script ScrollReveal e usado
@@ -43,13 +42,11 @@ function scrollToTop() {
 // Função para definir a mesma altura para os containers .team-desc
 function definirMesmaAltura() {
   const membrosDaEquipe = document.querySelectorAll('#team-members .col');
-  // console.log('membrosDaEquipe', membrosDaEquipe);
   let alturaMaxima = 0;
 
   // Resetar altura para evitar problemas de layout responsivo
   membrosDaEquipe.forEach((membro) => {
     const descricaoDaEquipe = membro.querySelector('.team-desc');
-    // console.log(descricaoDaEquipe);
     descricaoDaEquipe.style.height = 'auto';
   });
 
@@ -58,7 +55,6 @@ function definirMesmaAltura() {
     const descricaoDaEquipe = membro.querySelector('.team-desc');
     const altura = descricaoDaEquipe.offsetHeight;
     alturaMaxima = Math.max(alturaMaxima, altura);
-    // console.log(alturaMaxima);
   });
 
   // Aplique a altura máxima a todos os containers .team-desc

@@ -39,7 +39,6 @@ td, th{
 
   30% {
     background: url("../img/Firefly_23141.jpg")center / cover no-repeat;
-    /* background-attachment: fixed; */
   }
 
   40% {
@@ -292,7 +291,6 @@ p>strong {
 }
 
 .rodape {
-  /* background-color: rgba(50, 50, 189, 0.589); */
   color: white;
 }
 

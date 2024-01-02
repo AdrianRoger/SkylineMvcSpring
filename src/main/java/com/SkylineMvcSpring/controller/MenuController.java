@@ -9,10 +9,6 @@ import com.SkylineMvcSpring.model.Contato;
 @Controller
 public class MenuController {
 	
-//	@Autowired
-//	private ContatoRepository contatoRepository;
-	
-	
 	@GetMapping("/destino")
 	public String showDestinoPage() {
 	  return "destino";
@@ -31,14 +27,4 @@ public class MenuController {
 	
 		return modelAndView;
 	}
-	
-//	@PostMapping("/contato")
-//	public ModelAndView cadastrarContato(Contato contato) throws IOException {
-//		
-//		ModelAndView modelAndView = new ModelAndView("redirect:/contato");
-//	 
-//		contatoRepository.save(contato);
-// 
-//		return modelAndView;
-//	}
 }
